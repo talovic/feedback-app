@@ -1,10 +1,12 @@
 //SurveyFormReview shows user their form inputs for review
 import React from 'react';
+import { connect } from 'react-redux';
 
-const SurveyFormReview = ({ onCancel }) => {
+const SurveyFormReview = ({ onCancel, formValues }) => {
   return (
     <div>
       <h5>Please confirm your entries</h5>
+
       <button className="yellow darken-3 btn-flat" onClick={onCancel}>
         Back
       </button>
@@ -12,4 +14,10 @@ const SurveyFormReview = ({ onCancel }) => {
   );
 };
 
-export default SurveyFormReview;
+function mapStateToProps(state) {
+  return {
+    formValues: state.form.surveyForm.values
+  };
+}
+
+export default connect(mapStateToProps)(SurveyFormReview);
